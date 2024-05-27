@@ -11,10 +11,9 @@ import MovieCard from "../components/MovieCard";
 
 import "./Movie.css";
 
-const moviesURL = import.meta.env.VITE_API;
-const apiKey = import.meta.env.VITE_API_KEY;
-
 const Movie = () => {
+  const moviesURL = import.meta.env.VITE_API;
+  const apiKey = import.meta.env.VITE_API_KEY;
   const { id } = useParams();
   const [movie, setMovie] = useState(null);
 
@@ -29,14 +28,14 @@ const Movie = () => {
     const movieURL = `${moviesURL}${id}?${apiKey}`;
 
     getMovie(movieURL);
-  }, []);
+  }, [moviesURL, apiKey, id]);
 
   const formatCurrency = (number) => {
     return number.toLocaleString("en-US", {
       style: "currency",
       currency: "USD",
-    })
-  }
+    });
+  };
 
   return (
     <div className="movie-page">
